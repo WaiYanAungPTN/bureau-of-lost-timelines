@@ -1,0 +1,160 @@
+.lb-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
+}
+
+.lb-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.lb-tab {
+  background: transparent;
+  border: 1px solid var(--fg-dim);
+  color: var(--fg-dim);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.lb-tab:hover,
+.lb-tab.active {
+  background: var(--fg);
+  color: #000;
+  border-color: var(--fg);
+}
+
+.lb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--fg-dim);
+  background: rgba(51, 255, 102, 0.03);
+  padding: 12px 16px;
+  transition: all 0.2s;
+}
+
+.lb-row:hover {
+  border-color: var(--fg);
+  box-shadow: 0 0 15px rgba(51, 255, 102, 0.2);
+}
+
+.lb-row.me {
+  border-color: var(--fg);
+  background: rgba(51, 255, 102, 0.1);
+  box-shadow: 0 0 20px rgba(51, 255, 102, 0.3);
+}
+
+.lb-row.top-1 {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent);
+  border-color: var(--yellow);
+}
+
+.lb-row.top-2 {
+  background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent);
+  border-color: var(--silver);
+}
+
+.lb-row.top-3 {
+  background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent);
+  border-color: var(--bronze);
+}
+
+.lb-rank {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--fg);
+  width: 40px;
+  text-align: center;
+}
+
+.lb-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: var(--bg-dark);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lb-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lb-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.lb-name {
+  color: var(--fg-bright);
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.me-badge {
+  background: var(--fg);
+  color: #000;
+  padding: 1px 6px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-left: 4px;
+}
+
+.lb-role {
+  color: var(--fg-dim);
+  font-size: 10px;
+  font-family: var(--font-my);
+}
+
+.lb-stats {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.lb-stat {
+  text-align: center;
+  color: var(--fg-dim);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.lb-stat span {
+  display: block;
+  font-size: 14px;
+  color: var(--fg);
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 500px) {
+  .lb-stats {
+    gap: 6px;
+  }
+  .lb-stat span {
+    font-size: 12px;
+  }
+  .lb-name {
+    font-size: 11px;
+  }
+}
