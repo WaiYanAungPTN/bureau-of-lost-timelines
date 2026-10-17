@@ -1,0 +1,62 @@
+/* Photo markers — real/folklore/fiction */
+.photo {
+  position: relative;
+}
+
+.photo-marker {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 9px;
+  padding: 3px 8px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  z-index: 5;
+  border: 1px solid;
+  backdrop-filter: blur(4px);
+}
+
+.photo-marker.real {
+  background: rgba(51, 255, 102, 0.9);
+  color: #000;
+  border-color: var(--fg);
+  box-shadow: 0 0 10px var(--fg);
+}
+
+.photo-marker.folklore {
+  background: rgba(255, 170, 51, 0.9);
+  color: #000;
+  border-color: var(--orange);
+  box-shadow: 0 0 10px var(--orange);
+}
+
+.photo-marker.fiction {
+  background: rgba(255, 85, 85, 0.9);
+  color: #fff;
+  border-color: var(--red);
+  box-shadow: 0 0 10px var(--red);
+}
+
+.photo-desc {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  color: var(--fg-bright);
+  padding: 15px;
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.photo:hover .photo-desc {
+  display: block;
+}
+
+.photo-desc .desc-title {
+  color: var(--fg);
+  font-size: 11px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
