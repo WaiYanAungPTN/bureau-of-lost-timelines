@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Bureau of Lost Timelines</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <header class="site-header">
+    <div class="classified-stamp">RESTRICTED</div>
+    <h1>ADMIN CONSOLE</h1>
+    <div class="my-title">ဌာန စီမံခန့်ခွဲမှု ကွန်ဆိုးလ်</div>
+    <div class="subtitle">DEPT. 07 — AUTHORIZED PERSONNEL ONLY</div>
+    <div class="header-actions">
+      <a href="index.html" class="admin-link">← BACK TO ARCHIVE</a>
+    </div>
+  </header>
+
+  <div class="admin-login" id="adminLogin">
+    <div class="login-box">
+      <div class="lock-icon">🔐</div>
+      <div class="vault-label">ENTER ADMIN PASSWORD</div>
+      <input type="password" id="adminPassInput" placeholder="••••••••" autocomplete="off">
+      <button id="adminLoginBtn">AUTHENTICATE</button>
+      <div class="hint">Default password: <code>admin123</code> (change after login)</div>
+    </div>
+  </div>
+
+  <div class="admin-dashboard" id="adminDashboard" style="display:none;">
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="files">📁 Files</button>
+      <button class="admin-tab" data-tab="news">📰 News</button>
+      <button class="admin-tab" data-tab="photos">📸 Photos</button>
+      <button class="admin-tab" data-tab="stories">📖 Stories</button>
+      <button class="admin-tab" data-tab="settings">⚙ Settings</button>
+    </div>
+
+    <div class="admin-content">
+
+      <div class="admin-panel active" id="tab-files">
+        <h2>📁 Manage Files</h2>
+        <div class="admin-form">
+          <h3>Add New File</h3>
+          <input type="text" id="f-id" placeholder="ID (e.g. 0xAA-0001)">
+          <input type="text" id="f-title" placeholder="Title (English)">
+          <input type="text" id="f-my" placeholder="မြန်မာ ခေါင်းစဉ်">
+          <input type="text" id="f-meta" placeholder="Status (e.g. STATUS: ACTIVE)">
+          <select id="f-cls">
+            <option value="status-active">Active</option>
+            <option value="status-redacted">Redacted</option>
+            <option value="status-lost">Lost</option>
+            <option value="status-erased">Erased</option>
+            <option value="status-sealed">Sealed</option>
+          </select>
+          <textarea id="f-body" placeholder="Body (English)" rows="3"></textarea>
+          <textarea id="f-bodymy" placeholder="ကိုယ်ထည် (မြန်မာ)" rows="3"></textarea>
+          <button class="admin-btn" id="addFileBtn">+ ADD FILE</button>
+        </div>
+        <div class="admin-list" id="fileAdminList"></div>
+      </div>
+
+      <div class="admin-panel" id="tab-news">
+        <h2>📰 Manage News</h2>
+        <div class="admin-form">
+          <h3>Add News Article</h3>
+          <input type="text" id="n-title" placeholder="Title (English)">
+          <input type="text" id="n-my" placeholder="မြန်မာ ခေါင်းစဉ်">
+          <input type="text" id="n-date" placeholder="Archive Date (e.g. 2024-01-01)">
+          <textarea id="n-body" placeholder="Body" rows="3"></textarea>
+          <button class="admin-btn" id="addNewsBtn">+ ADD NEWS</button>
+        </div>
+        <div class="admin-list" id="newsAdminList"></div>
+      </div>
+
+      <div class="admin-panel" id="tab-photos">
+        <h2>📸 Manage Photos</h2>
+        <div class="admin-form">
+          <h3>Add Photo</h3>
+          <input type="text" id="p-url" placeholder="Image URL or data:image/... base64">
+          <input type="text" id="p-cap" placeholder="Caption (English)">
+          <input type="text" id="p-my" placeholder="မြန်မာ ဖော်ပြချက်">
+          <div class="photo-preview" id="photoPreview"></div>
+          <input type="file" id="p-file" accept="image/*" class="file-input">
+          <label for="p-file" class="file-label">📁 Or upload from device (base64 embedded)</label>
+          <button class="admin-btn" id="addPhotoBtn">+ ADD PHOTO</button>
+        </div>
+        <div class="admin-list" id="photoAdminList"></div>
+      </div>
+
+      <div class="admin-panel" id="tab-stories">
+        <h2>📖 Manage Storylines</h2>
+        <div class="admin-form">
+          <h3>Add Storyline</h3>
+          <input type="text" id="s-id" placeholder="ID (e.g. arc-custom-1)">
+          <select id="s-cat">
+            <option value="timeline">Timeline Erasures</option>
+            <option value="places">Lost Places</option>
+            <option value="observers">Observers</option>
+            <option value="memory">Memory</option>
+            <option value="deep">Deep Archive</option>
+          </select>
+          <input type="text" id="s-tag" placeholder="Tag (e.g. ARC 12 · CUSTOM)">
+          <input type="text" id="s-title" placeholder="Title (English)">
+          <input type="text" id="s-my" placeholder="မြန်မာ ခေါင်းစဉ်">
+          <input type="text" id="s-date" placeholder="Date (e.g. 2024)">
+          <textarea id="s-excerpt" placeholder="Excerpt (short)" rows="2"></textarea>
+          <textarea id="s-narrative" placeholder="Full narrative (HTML allowed)" rows="4"></textarea>
+          <input type="text" id="s-chars" placeholder="Characters (comma-separated)">
+          <button class="admin-btn" id="addStoryBtn">+ ADD STORYLINE</button>
+        </div>
+        <div class="admin-list" id="storyAdminList"></div>
+      </div>
+
+      <div class="admin-panel" id="tab-settings">
+        <h2>⚙ Settings</h2>
+        <div class="admin-form">
+          <h3>Change Vault Code</h3>
+          <input type="text" id="set-vault" placeholder="New vault code">
+          <button class="admin-btn" id="saveVaultBtn">SAVE VAULT CODE</button>
+
+          <h3 style="margin-top:25px;">Change Admin Password</h3>
+          <input type="password" id="set-admin" placeholder="New admin password">
+          <button class="admin-btn" id="saveAdminBtn">SAVE ADMIN PASSWORD</button>
+
+          <h3 style="margin-top:25px; color:#ff5555;">⚠ Danger Zone</h3>
+          <button class="admin-btn danger" id="resetAllBtn">🗑 RESET ALL CUSTOM DATA</button>
+          <p class="danger-note">This will remove all files, news, photos, stories, vault code, and admin password you have added. Base content will remain.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/storylines.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
