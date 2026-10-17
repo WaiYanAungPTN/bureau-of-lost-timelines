@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trailer Music Generator | BLT</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #33ff66;
+      font-family: 'Courier New', monospace;
+      padding: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    h1 { color: #7dffa5; font-size: 18px; }
+    button {
+      background: #33ff66;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-family: inherit;
+      font-weight: bold;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover { box-shadow: 0 0 20px #33ff66; }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .status {
+      border: 1px solid #228844;
+      padding: 15px;
+      margin: 20px 0;
+      background: rgba(51,255,102,0.03);
+      font-size: 13px;
+    }
+    .instructions {
+      border-left: 2px solid #33ff66;
+      padding: 10px 15px;
+      margin: 20px 0;
+      background: rgba(51,255,102,0.05);
+      font-size: 13px;
+      color: #55aa77;
+    }
+    code { color: #ffaa33; background: rgba(255,170,51,0.1); padding: 2px 6px; }
+  </style>
+</head>
+<body>
+  <h1>🎵 TRAILER MUSIC GENERATOR — Bureau of Lost Timelines</h1>
+
+  <div class="instructions">
+    <strong>အသုံးပြုနည်း:</strong><br>
+    1. "▶ START" နှိပ်ပါ — music စတင်မည်<br>
+    2. "⏺ RECORD 60s" နှိပ်ပါ — ၆၀ စက္ကန့် မှတ်တမ်းတင်မည်<br>
+    3. "⏬ DOWNLOAD" နှိပ်ပြီး <code>trailer-music.webm</code> သိမ်းပါ<br>
+    4. ထို file ကို <code>audio/</code> folder ထဲ ထည့်ပါ<br>
+    5. <code>intro.html</code> တွင် <code>&lt;audio&gt;</code> tag ဖြင့် အသုံးပြုပါ
+  </div>
+
+  <div>
+    <button id="startBtn">▶ START</button>
+    <button id="recBtn" disabled>⏺ RECORD 60s</button>
+    <button id="stopRecBtn" disabled>⏹ STOP</button>
+    <button id="downloadBtn" disabled>⏬ DOWNLOAD</button>
+  </div>
+
+  <div class="status" id="status">STATUS: idle</div>
+
+  <script>
+    let ctx = null, oscillators = [], masterGain = null;
+    let mediaRecorder = null, recordedChunks = [], recordedBlob = null;
+    let isRunning = false;
+
+    const startBtn = document.getElementById('startBtn');
+    const recBtn = document.getElementById('recBtn');
+    const stopRecBtn = document.getElementById('stopRecBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const status = document.getElementById('status');
+
+    function createNoiseBuffer(context) {
+      const bufferSize = 2 * context.sampleRate;
+      const buffer = context.createBuffer(1, bufferSize, context.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * 0.5;
+      }
+      return buffer;
+    }
+
+    function start() {
+      if (isRunning) return;
+      try {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        masterGain = ctx.createGain();
+        masterGain.gain.value = 0.15;
+        masterGain.connect(ctx.destination);
+
+        // Drone
+        const drone = ctx.createOscillator();
+        drone.type = 'sine';
+        drone.frequency.value = 55;
+        const droneGain = ctx.createGain();
+        droneGain.gain.value = 0.4;
+        drone.connect(droneGain).connect(masterGain);
+        drone.start();
+        oscillators.push(drone);
+
+        // Fifth
+        const fifth = ctx.createOscillator();
+        fifth.type = 'sine';
+        fifth.frequency.value = 82.5;
+        const fifthGain = ctx.createGain();
+        fifthGain.gain.value = 0.2;
+        fifth.connect(fifthGain).connect(masterGain);
+        fifth.start();
+        oscillators.push(fifth);
+
+        // Noise
+        const noise = ctx.createBufferSource();
+        noise.buffer = createNoiseBuffer(ctx);
+        noise.loop = true;
+        const noiseFilter = ctx.createBiquadFilter();
+        noiseFilter.type = 'lowpass';
+        noiseFilter.frequency.value = 400;
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.value = 0.04;
+        noise.connect(noiseFilter).connect(noiseGain).connect(masterGain);
+        noise.start();
+        oscillators.push(noise);
+
+        // Pulse
+        const now = ctx.currentTime;
+        for (let i = 0; i < 15; i++) {
+          const t = now + 2 + i * 4;
+          const osc = ctx.createOscillator();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(60, t);
+          osc.frequency.exponentialRampToValueAtTime(30, t + 0.8);
+          const g = ctx.createGain();
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.6, t + 0.05);
+          g.gain.exponentialRampToValueAtTime(0.01, t + 0.8);
+          osc.connect(g).connect(masterGain);
+          osc.start(t);
+          osc.stop(t + 0.9);
+          oscillators.push(osc);
+        }
+
+        // Sweeps
+        const sweepTimes = [10, 30, 55];
+        sweepTimes.forEach(startOffset => {
+          const osc = ctx.createOscillator();
+          osc.type = 'sawtooth';
+          const t = now + startOffset;
+          osc.frequency.setValueAtTime(100, t);
+          osc.frequency.exponentialRampToValueAtTime(800, t + 8);
+          const g = ctx.createGain();
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.08, t + 4);
+          g.gain.linearRampToValueAtTime(0, t + 8);
+          osc.connect(g).connect(masterGain);
+          osc.start(t);
+          osc.stop(t + 8.1);
+          oscillators.push(osc);
+        });
+
+        // Bells
+        [15, 25, 42, 58].forEach(offset => {
+          const t = now + offset;
+          const osc = ctx.createOscillator();
+          osc.type = 'triangle';
+          osc.frequency.value = 440;
+          const g = ctx.createGain();
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.15, t + 0.01);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 3);
+          osc.connect(g).connect(masterGain);
+          osc.start(t);
+          osc.stop(t + 3.1);
+          oscillators.push(osc);
+        });
+
+        isRunning = true;
+        startBtn.textContent = '⏹ STOP';
+        recBtn.disabled = false;
+        status.textContent = 'STATUS: playing · click RECORD';
+      } catch (e) {
+        status.textContent = 'ERROR: ' + e.message;
+      }
+    }
+
+    function stop() {
+      if (!isRunning) return;
+      oscillators.forEach(o => { try { o.stop(); } catch (e) {} });
+      oscillators = [];
+      if (ctx) { try { ctx.close(); } catch (e) {} ctx = null; }
+      isRunning = false;
+      startBtn.textContent = '▶ START';
+      recBtn.disabled = true;
+      status.textContent = 'STATUS: stopped';
+    }
+
+    startBtn.addEventListener('click', () => isRunning ? stop() : start());
+
+    recBtn.addEventListener('click', () => {
+      if (!isRunning || !ctx) return;
+      const dest = ctx.createMediaStreamDestination();
+      masterGain.connect(dest);
+      recordedChunks = [];
+      mediaRecorder = new MediaRecorder(dest.stream);
+      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        recordedBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+        downloadBtn.disabled = false;
+        status.textContent = 'STATUS: recorded ✓ · ' + (recordedBlob.size / 1024).toFixed(1) + ' KB';
+      };
+      mediaRecorder.start();
+      stopRecBtn.disabled = false;
+      recBtn.disabled = true;
+      status.textContent = 'STATUS: recording 60s...';
+      setTimeout(() => {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+          mediaRecorder.stop();
+          stopRecBtn.disabled = true;
+        }
+      }, 60000);
+    });
+
+    stopRecBtn.addEventListener('click', () => {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        stopRecBtn.disabled = true;
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!recordedBlob) return;
+      const url = URL.createObjectURL(recordedBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'trailer-music.webm';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+  </script>
+</body>
+</html>
