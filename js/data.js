@@ -20,4 +20,18 @@ window.BLT_DATA = {
     { url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=60", cap: "EARTH-114 · OCEAN BOIL", my: "ကမ္ဘာ-၁၁၄ · သမုဒ္ဒရာ ဆူပွက်မှု", marker: "fiction" },
     { url: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=60", cap: "TIMELINE FRACTURE · SECTOR-14", my: "အချိန်မျဉ်း ကွဲအက်မှု · ကဏ္ဍ-၁၄", marker: "fiction" },
     { url: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=400&q=60", cap: "THE 13TH MONTH · SKY RECORD", my: "၁၃ လမြောက် · ကောင်းကင် မှတ်တမ်း", marker: "fiction" },
-    { url: "https://images.unsplash
+    { url: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=60", cap: "UNMAPPED CITY · NIGHT VIEW", my: "မြေပုံမပါသော မြို့ · ညဘက် မြင်ကွင်း", marker: "fiction" },
+    { url: "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=400&q=60", cap: "MIRROR POPULATION · REFLECTION", my: "မှန်ပြောင်း လူဦးရေ · ရောင်ပြန်ဟပ်မှု", marker: "fiction" },
+    { url: "https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=400&q=60", cap: "ERASED TIMELINE · 0x7F", my: "ဖျက်ပစ်ခံရသော အချိန်မျဉ်း · 0x7F", marker: "fiction" }
+  ],
+
+  vaultCode: "07",
+
+  vaultContent: `
+    <p>Welcome, authorized personnel.</p>
+    <p class="my">လျှို့ဝှက်မှတ်တမ်း #0x00 — ကျွန်ုပ်တို့ နေထိုင်နေသော ကမ္ဘာသည် ပထမဆုံးသော ကမ္ဘာ မဟုတ်ပါ။ ၎င်းသည် ပြန်လည်တည်ဆောက်ထားသော မိတ္တူတစ်ခု ဖြစ်သည်။</p>
+    <p class="my">၂၀၁၉ ခုနှစ်တွင် Timeline 0x7F ကို ဖျက်ပစ်ခဲ့သည်။ ကျွန်ုပ်တို့သည် ၎င်း၏ အကြွင်းအကျန်များပေါ်တွင် ဤကမ္ဘာကို တည်ဆောက်ခဲ့သည်။ သင့်မှတ်ဉာဏ်အချို့သည် မှားယွင်းနေနိုင်သည်။</p>
+    <p class="my">ဤစာကို ဖတ်ပြီးပါက — သင်သည် စောင့်ကြည့်ခံနေရပြီ ဖြစ်သည်။ ဘယ်သူမှ မပြောပါနှင့်။</p>
+    <p style="color:#ff5555; font-size:11px; margin-top:15px;">[ ACCESS LOGGED — SUBJECT FLAGGED ]</p>
+  `
+};
