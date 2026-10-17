@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard | Bureau of Lost Timelines</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/leaderboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="classified-stamp">PUBLIC</div>
+    <h1>PERSONNEL LEADERBOARD</h1>
+    <div class="my-title">ဝန်ထမ်း အဆင့်သတ်မှတ်ချက်</div>
+    <div class="subtitle">DEPT. 07 — TOP OPERATIVES</div>
+    <div class="header-actions">
+      <a href="index.html" class="admin-link">← ARCHIVE</a>
+      <a href="dashboard.html" class="admin-link">🏠 DASHBOARD</a>
+    </div>
+  </header>
+
+  <main class="lb-main">
+    <div class="lb-tabs">
+      <button class="lb-tab active" data-sort="xp">TOP XP</button>
+      <button class="lb-tab" data-sort="approved">TOP APPROVED</button>
+      <button class="lb-tab" data-sort="badges">TOP BADGES</button>
+      <button class="lb-tab" data-sort="missions">TOP MISSIONS</button>
+    </div>
+    <div id="lbList" class="lb-list"></div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/badges.js"></script>
+  <script src="js/leaderboard.js"></script>
+</body>
+</html>
