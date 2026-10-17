@@ -1266,4 +1266,259 @@ body::after {
 }
 
 .notif-count {
-  background: var(--
+  background: var(--red);
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 6px;
+  font-size: 9px;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+/* ============================================================
+   PROFILE AVATAR (Dashboard)
+   ============================================================ */
+.profile-avatar {
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--fg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: var(--fg);
+  background: var(--bg-dark);
+  flex-shrink: 0;
+  text-shadow: 0 0 15px var(--fg);
+  box-shadow: 0 0 20px rgba(51, 255, 102, 0.3);
+  overflow: hidden;
+}
+
+.profile-avatar.has-img {
+  padding: 0;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar-edit-btn {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  background: var(--fg);
+  color: #000;
+  border: 2px solid var(--bg);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+
+.avatar-edit-btn:hover {
+  box-shadow: 0 0 15px var(--fg);
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.empty-note {
+  color: var(--fg-dim);
+  text-align: center;
+  padding: 40px;
+  font-size: 12px;
+  font-family: var(--font-my);
+}
+
+.text-real { color: var(--fg); }
+.text-folklore { color: var(--orange); }
+.text-fiction { color: var(--red); }
+
+.badge-real,
+.badge-folklore,
+.badge-fiction {
+  display: inline-block;
+  font-size: 9px;
+  padding: 2px 8px;
+  letter-spacing: 1px;
+  border: 1px solid;
+  font-weight: bold;
+}
+
+.badge-real {
+  background: rgba(51, 255, 102, 0.15);
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+.badge-folklore {
+  background: rgba(255, 170, 51, 0.15);
+  color: var(--orange);
+  border-color: var(--orange);
+}
+
+.badge-fiction {
+  background: rgba(255, 85, 85, 0.15);
+  color: var(--red);
+  border-color: var(--red);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .site-main {
+    padding: 20px 15px 40px;
+  }
+
+  .marker-legend {
+    gap: 10px;
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+  .marker-legend .legend-title {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 500px) {
+  .site-header {
+    padding: 20px 15px;
+  }
+
+  .classified-stamp {
+    font-size: 9px;
+    padding: 3px 7px;
+    top: 6px;
+    right: 8px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .audio-toggle,
+  .admin-link {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+
+  .site-nav {
+    gap: 4px;
+    padding: 10px;
+  }
+
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+  .file-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .storyline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-bar-wrap {
+    padding: 0 15px;
+  }
+
+  .search-results {
+    left: 15px;
+    right: 15px;
+  }
+
+  .footer-links {
+    gap: 10px;
+  }
+
+  .modal-inner {
+    padding: 20px 15px;
+  }
+
+  .modal-inner h3 {
+    font-size: 13px;
+  }
+
+  .vault input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .vault button {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-header h1 {
+    font-size: 1rem;
+  }
+
+  .my-title {
+    font-size: 0.85rem;
+  }
+
+  .nav-btn {
+    font-size: 9px;
+    padding: 5px 8px;
+  }
+}
+
+/* ============================================================
+   PRINT (hidden overlays)
+   ============================================================ */
+@media print {
+  body::before,
+  body::after,
+  .ticker,
+  .site-nav,
+  .search-bar-wrap {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY — Reduced Motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   END OF STYLESHEET
+   ============================================================ */
