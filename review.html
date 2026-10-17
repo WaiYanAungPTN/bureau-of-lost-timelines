@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review | Bureau of Lost Timelines</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/review.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="classified-stamp">RESTRICTED</div>
+    <h1>REVIEW QUEUE</h1>
+    <div class="my-title">အတည်ပြုရေး တန်းစီမှု</div>
+    <div class="subtitle">DEPT. 07 — EDITORIAL COUNCIL</div>
+    <div class="header-actions">
+      <a href="dashboard.html" class="admin-link">← DASHBOARD</a>
+      <a href="manage-roles.html" class="admin-link" id="manageRolesLink" style="display:none;">👥 ROLES</a>
+    </div>
+  </header>
+
+  <main class="review-main">
+    <div class="review-tabs">
+      <button class="rt-btn active" data-status="pending">PENDING (<span id="countPending">0</span>)</button>
+      <button class="rt-btn" data-status="approved">APPROVED</button>
+      <button class="rt-btn" data-status="rejected">REJECTED</button>
+    </div>
+    <div id="reviewList" class="review-list"></div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/submissions.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/review.js"></script>
+</body>
+</html>
