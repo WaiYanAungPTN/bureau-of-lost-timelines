@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit | Bureau of Lost Timelines</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/missions.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="classified-stamp">SUBMIT</div>
+    <h1>ARCHIVE SUBMISSION</h1>
+    <div class="my-title">မှတ်တမ်းတိုက်သို့ တင်သွင်းခြင်း</div>
+    <div class="subtitle">DEPT. 07 — FIELD REPORT FORM</div>
+    <div class="header-actions">
+      <a href="dashboard.html" class="admin-link">← DASHBOARD</a>
+    </div>
+  </header>
+
+  <main class="missions-main">
+    <div class="submit-form">
+      <div class="form-row">
+        <label>Submission Type</label>
+        <select id="subType">
+          <option value="story">📖 Storyline</option>
+          <option value="news">📰 News Article</option>
+          <option value="photo">📸 Photograph</option>
+          <option value="document">📄 Classified Document</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Title (English)</label>
+        <input type="text" id="subTitle" placeholder="e.g. The Vanishing Hour">
+      </div>
+
+      <div class="form-row">
+        <label>မြန်မာ ခေါင်းစဉ်</label>
+        <input type="text" id="subMy" placeholder="ဥပမာ — ပျောက်ကွယ်သွားသော နာရီ">
+      </div>
+
+      <div class="form-row" id="categoryRow">
+        <label>Category (for storylines)</label>
+        <select id="subCategory">
+          <option value="timeline">Timeline Erasure</option>
+          <option value="places">Lost Place</option>
+          <option value="observers">Observer</option>
+          <option value="memory">Memory</option>
+          <option value="deep">Deep Archive</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Excerpt / Short Description</label>
+        <textarea id="subExcerpt" rows="2" placeholder="One-sentence hook..."></textarea>
+      </div>
+
+      <div class="form-row">
+        <label>Full Content</label>
+        <textarea id="subContent" rows="8" placeholder="Full storyline / article / document."></textarea>
+      </div>
+
+      <div class="form-row">
+        <label>Content (မြန်မာ)</label>
+        <textarea id="subContentMy" rows="4" placeholder="မြန်မာ ဘာသာဖြင့် (optional)"></textarea>
+      </div>
+
+      <div class="form-row" id="mediaRow" style="display:none;">
+        <label>Image URL or Upload</label>
+        <input type="text" id="subMediaUrl" placeholder="Image URL or base64">
+        <input type="file" id="subMediaFile" accept="image/*" style="margin-top:8px;">
+      </div>
+
+      <div class="form-row">
+        <label>Characters / Tags (comma-separated)</label>
+        <input type="text" id="subTags" placeholder="Director 0, Subject Zero">
+      </div>
+
+      <div class="submit-info">
+        ⓘ Submission will be reviewed by 3 Editors or 1 Chairman before publishing.
+        <div class="my">တင်သွင်းချက်ကို Editor ၃ ဦး သို့မဟုတ် ဥက္ကဋ္ဌ ၁ ဦးမှ အတည်ပြုပြီးမှ ဖော်ပြပါမည်။</div>
+      </div>
+
+      <button class="submit-btn" id="submitBtn">SUBMIT FOR REVIEW →</button>
+      <div id="submitResult" class="submit-result"></div>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/submissions.js"></script>
+  <script src="js/submit.js"></script>
+</body>
+</html>
