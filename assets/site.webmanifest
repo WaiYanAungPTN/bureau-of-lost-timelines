@@ -1,0 +1,29 @@
+{
+  "name": "Bureau of Lost Timelines",
+  "short_name": "BLT",
+  "description": "ပျောက်ဆုံးသွားတဲ့ အချိန်မျဉ်းကြောင်းများဆိုင်ရာ လျှို့ဝှက်ဌာန",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait",
+  "lang": "my",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
