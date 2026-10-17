@@ -44,4 +44,36 @@
         return `
           <div class="review-card">
             <div class="rc-header">
-              <div><span class="rc-type">${R.label}</span><span
+              <div><span class="rc-type">${R.label}</span><span class="rc-title">${u.displayName}</span></div>
+              <span class="rc-status">${u.xp} XP</span>
+            </div>
+            <div class="rc-meta">${u.email} · Joined ${new Date(u.createdAt).toLocaleDateString()}</div>
+            <div class="rc-actions">${actions || '<span style="color:#228844;font-size:11px;">No actions available</span>'}</div>
+          </div>
+        `;
+      }).join('');
+
+    list.querySelectorAll('.rc-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+
+        if (action === 'chair') {
+          if (!confirm('Appoint this user as Chairman?')) return;
+          const res = A.appointChairman(id, me.id);
+          if (!res.ok) { alert('⚠ ' + res.error); return; }
+          alert('✓ Chairman appointed');
+        } else if (action === 'editor') {
+          const res = A.appointEditor(id, me.id);
+          if (!res.ok) { alert('⚠ ' + res.error); return; }
+          alert('✓ Editor appointed');
+        } else if (action === 'uneditor') {
+          const res = A.removeEditor(id, me.id);
+          if (!res.ok) { alert('⚠ ' + res.error); return; }
+          alert('✓ Editor removed');
+        }
+        render(me);
+      });
+    });
+  }
+})();
