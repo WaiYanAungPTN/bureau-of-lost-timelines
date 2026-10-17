@@ -1,0 +1,247 @@
+.missions-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
+}
+
+.missions-filter {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.mf-btn {
+  background: transparent;
+  border: 1px solid var(--fg-dim);
+  color: var(--fg-dim);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.mf-btn:hover,
+.mf-btn.active {
+  background: var(--fg);
+  color: #000;
+  border-color: var(--fg);
+}
+
+.missions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mission-card {
+  border: 1px solid var(--fg-dim);
+  background: rgba(51, 255, 102, 0.03);
+  padding: 18px;
+  transition: all 0.2s;
+}
+
+.mission-card:hover {
+  border-color: var(--fg);
+  box-shadow: 0 0 20px rgba(51, 255, 102, 0.2);
+}
+
+.mission-card.done {
+  border-color: var(--fg);
+  background: rgba(51, 255, 102, 0.08);
+  opacity: 0.8;
+}
+
+.mission-card.locked {
+  opacity: 0.5;
+  border-style: dashed;
+}
+
+.mission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  gap: 10px;
+}
+
+.mission-title {
+  color: var(--fg-bright);
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.mission-xp {
+  color: var(--orange);
+  font-size: 12px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.mission-my {
+  font-family: var(--font-my);
+  color: var(--fg);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.mission-desc {
+  color: var(--fg-mid);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.mission-desc-my {
+  font-family: var(--font-my);
+  color: var(--fg-bright);
+  font-size: 12px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.mission-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--fg-dim);
+}
+
+.mission-role {
+  font-size: 9px;
+  color: var(--fg-dim);
+  letter-spacing: 2px;
+}
+
+.mission-badge {
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+}
+
+.mission-badge.done {
+  background: var(--fg);
+  color: #000;
+}
+
+.mission-badge.locked {
+  color: var(--orange);
+  border: 1px solid var(--orange);
+}
+
+.mission-complete-btn {
+  background: transparent;
+  border: 1px solid var(--fg);
+  color: var(--fg);
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.mission-complete-btn:hover {
+  background: var(--fg);
+  color: #000;
+  box-shadow: 0 0 15px var(--fg);
+}
+
+.empty-note {
+  color: var(--fg-dim);
+  text-align: center;
+  padding: 40px;
+  font-size: 12px;
+  font-family: var(--font-my);
+}
+
+.submit-form {
+  border: 1px solid var(--fg);
+  background: rgba(51, 255, 102, 0.03);
+  padding: 24px;
+}
+
+.form-row {
+  margin-bottom: 14px;
+}
+
+.form-row label {
+  display: block;
+  color: var(--fg-bright);
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  background: #000;
+  border: 1px solid var(--fg-dim);
+  color: var(--fg);
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  outline: none;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-color: var(--fg);
+  box-shadow: 0 0 10px rgba(51, 255, 102, 0.3);
+}
+
+.form-row textarea {
+  resize: vertical;
+}
+
+.submit-info {
+  border-left: 2px solid var(--orange);
+  background: rgba(255, 170, 51, 0.05);
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--orange);
+  margin: 16px 0;
+  line-height: 1.7;
+}
+
+.submit-info .my {
+  font-family: var(--font-my);
+  color: #ffcc66;
+  margin-top: 4px;
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--fg);
+  color: #000;
+  border: none;
+  padding: 14px;
+  font-family: inherit;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  box-shadow: 0 0 25px var(--fg);
+}
+
+.submit-result {
+  margin-top: 15px;
+  color: var(--red);
+  font-size: 12px;
+  line-height: 1.7;
+  font-family: var(--font-mono);
+}
+
+.submit-result:not(:empty) {
+  border-left: 2px solid var(--fg);
+  padding: 10px 14px;
+  background: rgba(51, 255, 102, 0.05);
+}
