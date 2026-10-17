@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backup | Bureau of Lost Timelines</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/backup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="classified-stamp">RESTRICTED</div>
+    <h1>DATA BACKUP & EXPORT</h1>
+    <div class="my-title">ဒေတာ မိတ္တူ & ထုတ်ယူမှု</div>
+    <div class="subtitle">DEPT. 07 — SYSTEM ARCHIVE</div>
+    <div class="header-actions">
+      <a href="dashboard.html" class="admin-link">← DASHBOARD</a>
+    </div>
+  </header>
+
+  <main class="backup-main">
+    <div id="backupGate" class="backup-gate">
+      <div class="backup-gate-inner">
+        <div style="font-size:48px;">🔒</div>
+        <h2>ACCESS RESTRICTED</h2>
+        <p class="my">Chairman သို့မဟုတ် Owner သာ ဝင်ရောက်နိုင်သည်</p>
+      </div>
+    </div>
+
+    <div id="backupContent" style="display:none;">
+      <section class="backup-section">
+        <h2>📤 EXPORT</h2>
+        <p class="section-desc">Export all data as a JSON backup file.</p>
+        <p class="section-desc-my">ဒေတာအားလုံးကို JSON ဖိုင်အဖြစ် သိမ်းဆည်းပါ။</p>
+        <div class="backup-stats" id="backupStats"></div>
+        <div class="backup-buttons">
+          <button class="backup-btn" id="exportFull">📦 EXPORT FULL BACKUP</button>
+          <button class="backup-btn" id="exportUsers">👥 EXPORT USERS ONLY</button>
+          <button class="backup-btn" id="exportContent">📚 EXPORT CONTENT ONLY</button>
+        </div>
+      </section>
+
+      <section class="backup-section">
+        <h2>📥 IMPORT</h2>
+        <p class="section-desc">Restore data from a previously exported backup.</p>
+        <p class="section-desc-my">ယခင် သိမ်းထားသော backup မှ ပြန်လည်သွင်းပါ။</p>
+        <input type="file" id="importFile" accept=".json" class="backup-file">
+        <label for="importFile" class="backup-file-label">📁 Select Backup File</label>
+        <div class="backup-import-preview" id="importPreview"></div>
+        <button class="backup-btn danger" id="importConfirm" disabled>⚠ RESTORE (OVERWRITES DATA)</button>
+      </section>
+
+      <section class="backup-section">
+        <h2>⚠ DANGER ZONE</h2>
+        <p class="section-desc">Irreversible actions. Use with extreme caution.</p>
+        <div class="backup-buttons">
+          <button class="backup-btn danger" id="resetAll">🗑 RESET ALL DATA</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/backup.js"></script>
+</body>
+</html>
