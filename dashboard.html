@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Bureau of Lost Timelines</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/notifications.css">
+  <link rel="stylesheet" href="css/badges.css">
+  <link rel="stylesheet" href="css/avatar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="classified-stamp">AUTHORIZED</div>
+    <h1>MEMBER DASHBOARD</h1>
+    <div class="my-title">အဖွဲ့ဝင် ဒက်ရှ်ဘုတ်</div>
+    <div class="subtitle">DEPT. 07 — PERSONNEL TERMINAL</div>
+    <div class="header-actions">
+      <a href="index.html" class="admin-link">← ARCHIVE</a>
+      <a href="missions.html" class="admin-link">🎯 MISSIONS</a>
+      <a href="submit.html" class="admin-link">📤 SUBMIT</a>
+      <a href="leaderboard.html" class="admin-link">📊 LEADERBOARD</a>
+      <a href="badges.html" class="admin-link">🎖 BADGES</a>
+      <a href="review.html" class="admin-link" id="reviewLink" style="display:none;">📋 REVIEW</a>
+      <a href="backup.html" class="admin-link" id="backupLink" style="display:none;">💾 BACKUP</a>
+      <button id="logoutBtn" class="admin-link">LOGOUT</button>
+    </div>
+  </header>
+
+  <div class="verify-banner" id="verifyBanner" style="display:none;">
+    ⚠ <strong>Email not verified</strong> — <a href="verify.html">Verify now</a> to unlock submissions.
+  </div>
+
+  <main class="dash-main">
+    <section class="dash-profile">
+      <div class="profile-card">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar" id="avatar">?</div>
+          <button class="avatar-edit-btn" id="avatarEdit">✎</button>
+        </div>
+        <div class="profile-info">
+          <h2 id="profileName">Loading...</h2>
+          <div class="profile-email" id="profileEmail"></div>
+          <div class="profile-role">
+            <span class="role-badge" id="roleBadge">—</span>
+            <span class="role-my" id="roleMy"></span>
+          </div>
+          <div class="profile-xp">
+            <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+            <div class="xp-text" id="xpText">— XP</div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat"><div class="stat-value" id="statSubmissions">0</div><div class="stat-label">SUBMISSIONS</div></div>
+        <div class="stat"><div class="stat-value" id="statApproved">0</div><div class="stat-label">APPROVED</div></div>
+        <div class="stat"><div class="stat-value" id="statMissions">0</div><div class="stat-label">MISSIONS</div></div>
+        <div class="stat"><div class="stat-value" id="statBadges">0</div><div class="stat-label">BADGES</div></div>
+      </div>
+    </section>
+
+    <section class="dash-section">
+      <h3>🏅 BADGE PROGRESS<span class="my">ဘက်ဂ် တိုးတက်မှု</span></h3>
+      <div class="badges-progress" style="margin-bottom:12px;">
+        <div class="bpb"><div class="bpf" id="dashBadgeFill"></div></div>
+        <div class="bp-text" id="dashBadgeText">0 / 0</div>
+      </div>
+      <a href="badges.html" class="dash-link">View all badges →</a>
+    </section>
+
+    <section class="dash-section">
+      <h3>🎯 ASSIGNED MISSIONS<span class="my">တာဝန်များ</span></h3>
+      <div id="dashMissions" class="dash-missions"></div>
+      <a href="missions.html" class="dash-link">View all missions →</a>
+    </section>
+
+    <section class="dash-section">
+      <h3>📤 MY SUBMISSIONS<span class="my">ကျွန်ုပ်၏ တင်သွင်းချက်များ</span></h3>
+      <div id="dashSubmissions" class="dash-submissions"></div>
+      <a href="submit.html" class="dash-link">Submit new item →</a>
+    </section>
+
+    <section class="dash-section">
+      <h3>📊 ACTIVITY LOG<span class="my">လုပ်ဆောင်ချက် မှတ်တမ်း</span></h3>
+      <div id="dashActivity" class="dash-activity"></div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/missions.js"></script>
+  <script src="js/submissions.js"></script>
+  <script src="js/badges.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/avatar.js"></script>
+  <script src="js/dashboard-v2.js"></script>
+</body>
+</html>
