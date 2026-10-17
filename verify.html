@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Email | Bureau of Lost Timelines</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+  <header class="site-header">
+    <div class="classified-stamp">VERIFY</div>
+    <h1>EMAIL VERIFICATION</h1>
+    <div class="my-title">အီးမေးလ် အတည်ပြုခြင်း</div>
+    <div class="subtitle">DEPT. 07 — IDENTITY CONFIRMATION</div>
+  </header>
+
+  <main class="auth-container">
+    <div class="auth-form active">
+      <h2>📧 VERIFY YOUR EMAIL</h2>
+      <p class="auth-hint">သင့်အီးမေးလ်သို့ ပို့ထားသော ကုဒ်ကို ထည့်ပါ</p>
+
+      <div id="mockCode" class="mock-code-box" style="display:none;">
+        <div class="mock-code-label">📨 MOCK EMAIL — Verification code:</div>
+        <div class="mock-code-value" id="mockCodeValue"></div>
+        <div class="mock-code-note">(In production, this would be sent via email)</div>
+      </div>
+
+      <input type="text" id="verifyCode" placeholder="ENTER CODE" maxlength="8" style="text-align:center;letter-spacing:6px;font-size:18px;">
+
+      <button class="auth-btn" id="verifyBtn">VERIFY →</button>
+      <button class="auth-btn" id="resendBtn" style="background:transparent;border:1px solid #33ff66;color:#33ff66;margin-top:8px;">RESEND CODE</button>
+
+      <div class="auth-error" id="verifyError"></div>
+      <div class="auth-footer">
+        <a href="dashboard.html">← Skip for now</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    (function () {
+      const A = window.BLT_AUTH;
+      const user = A.getCurrentUser();
+      if (!user) { window.location.href = 'auth.html'; return; }
+      if (user.emailVerified) { window.location.href = 'dashboard.html'; return; }
+
+      const pending = A.get('blt:auth:pending_verifies', {});
+      const entry = pending[user.email];
+      if (entry) {
+        document.getElementById('mockCode').style.display = 'block';
+        document.getElementById('mockCodeValue').textContent = entry.code;
+      }
+
+      document.getElementById('verifyBtn').addEventListener('click', () => {
+        const code = document.getElementById('verifyCode').value.trim();
+        const res = A.verifyEmail(user.id, code);
+        if (!res.ok) {
+          document.getElementById('verifyError').textContent = '⚠ ' + res.error;
+          return;
+        }
+        if (window.BLT_BADGES) window.BLT_BADGES.checkAndAward(user.id);
+        window.location.href = 'dashboard.html';
+      });
+
+      document.getElementById('resendBtn').addEventListener('click', () => {
+        const res = A.resendCode(user.id);
+        if (!res.ok) return;
+        document.getElementById('mockCode').style.display = 'block';
+        document.getElementById('mockCodeValue').textContent = res.code;
+        document.getElementById('verifyError').textContent = '✓ New code generated';
+      });
+    })();
+  </script>
+</body>
+</html>
