@@ -1,0 +1,133 @@
+/* Avatar upload modal + preview */
+.avatar-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.avatar-modal.show {
+  display: flex;
+}
+
+.avatar-modal-inner {
+  background: var(--bg-dark);
+  border: 1px solid var(--fg);
+  padding: 25px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(51, 255, 102, 0.4);
+  position: relative;
+}
+
+.avatar-modal-inner h3 {
+  color: var(--fg-bright);
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.avatar-hint {
+  font-family: var(--font-my);
+  color: var(--fg-mid);
+  font-size: 11px;
+  margin-bottom: 15px;
+}
+
+.avatar-preview {
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--fg);
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: var(--fg);
+  background: var(--bg-dark);
+  overflow: hidden;
+}
+
+.avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-file {
+  display: none;
+}
+
+.avatar-file-label {
+  display: block;
+  border: 1px dashed var(--fg);
+  color: var(--fg);
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 11px;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.avatar-file-label:hover {
+  background: rgba(51, 255, 102, 0.1);
+}
+
+.avatar-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.avatar-btn {
+  background: var(--fg);
+  color: #000;
+  border: none;
+  padding: 8px 18px;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.avatar-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.avatar-btn:hover:not(:disabled) {
+  box-shadow: 0 0 15px var(--fg);
+}
+
+.avatar-btn.danger {
+  background: var(--red);
+  color: #fff;
+}
+
+.avatar-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--red);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.avatar-error {
+  color: var(--red);
+  font-size: 11px;
+  margin-top: 10px;
+  min-height: 16px;
+  font-family: var(--font-my);
+}
