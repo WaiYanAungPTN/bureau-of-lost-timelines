@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bureau of Lost Timelines — ပျောက်ဆုံးသွားတဲ့ အချိန်မျဉ်းကြောင်းများဆိုင်ရာ လျှို့ဝှက်ဌာန။ ပျောက်ဆုံးသွားတဲ့ အပြိုင်ကမ္ဘာများ၊ ဖျက်ပစ်ခံရသော timelines များနှင့် မဖြစ်ခဲ့ဖူးသော သမိုင်းဖြစ်ရပ်များ၏ လျှို့ဝှက်မှတ်တမ်း။">
+  <meta name="keywords" content="bureau of lost timelines, classified archive, timeline erasure, parallel earth, fiction, arg, လျှို့ဝှက်ဌာန">
+  <meta name="author" content="Bureau of Lost Timelines · Dept. 07">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Bureau of Lost Timelines | လျှို့ဝှက်ဌာန</title>
+
+  <!-- FAVICONS -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="assets/site.webmanifest">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bureau of Lost Timelines">
+  <meta property="og:title" content="Bureau of Lost Timelines — 59 Lost Timelines Documented">
+  <meta property="og:description" content="ပျောက်ဆုံးသွားတဲ့ အပြိုင်ကမ္ဘာများ၊ ဖျက်ပစ်ခံရသော timelines များနှင့် မဖြစ်ခဲ့ဖူးသော သမိုင်းဖြစ်ရပ်များ၏ လျှို့ဝှက်မှတ်တမ်း။ သင်ကို စောင့်ကြည့်နေသည်။">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bureau of Lost Timelines — Classified Temporal Archive">
+  <meta property="og:locale" content="my_MM">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- TWITTER / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bureau of Lost Timelines — Classified Archive">
+  <meta name="twitter:description" content="59 lost timelines documented. You are being observed.">
+  <meta name="twitter:image" content="assets/og-image.png">
+  <meta name="twitter:image:alt" content="Bureau of Lost Timelines">
+
+  <!-- Google / Search -->
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://your-domain.com/">
+
+  <!-- First-visit intro redirect -->
+  <script>
+    (function () {
+      if (sessionStorage.getItem('blt_intro_seen') === '1') return;
+      if (document.referrer && document.referrer.includes(window.location.host)) return;
+      if (!window.location.pathname.includes('intro.html')) {
+        window.location.replace('intro.html');
+      }
+    })();
+  </script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/timeline.css">
+  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="css/notifications.css">
+  <link rel="stylesheet" href="css/badges.css">
+  <link rel="stylesheet" href="css/photos-marker.css">
+  <link rel="stylesheet" href="css/documents-marker.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD structured data (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bureau of Lost Timelines",
+    "alternateName": "ပျောက်ဆုံးသွားတဲ့ အချိန်မျဉ်းကြောင်းများဆိုင်ရာ လျှို့ဝှက်ဌာန",
+    "url": "https://your-domain.com/",
+    "description": "A fictional classified government archive documenting lost parallel worlds, erased timelines, and events that never happened.",
+    "inLanguage": ["my", "en"],
+    "genre": "Science Fiction / ARG",
+    "creator": {
+      "@type": "Organization",
+      "name": "Bureau of Lost Timelines · Dept. 07"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="classified-stamp">CLASSIFIED</div>
+    <h1 id="siteTitle">BUREAU OF LOST TIMELINES</h1>
+    <div class="my-title">ပျောက်ဆုံးသွားတဲ့ အချိန်မျဉ်းကြောင်းများဆိုင်ရာ လျှို့ဝှက်ဌာန</div>
+    <div class="subtitle">DEPT. 07 — TEMPORAL ARCHIVE DIVISION</div>
+    <div class="header-actions">
+      <button id="audioToggle" class="audio-toggle" title="Toggle ambience">🔇 AMBIENCE OFF</button>
+      <a href="auth.html" class="admin-link">🔑 LOGIN</a>
+      <a href="auth.html#register" class="admin-link">📝 ENLIST</a>
+      <a href="admin.html" class="admin-link" title="Admin Panel">⚙ ADMIN</a>
+    </div>
+  </header>
+
+  <!-- ===== TICKER ===== -->
+  <div class="ticker" aria-hidden="true">
+    <span>⚠ ALERT: Timeline instability detected in Sector-14 · · · ARCHIVE SYNC COMPLETE · · · UNAUTHORIZED ACCESS LOGGED · · · YOU ARE BEING OBSERVED · · · TIMELINE 0x7F ERASED · · · သင့်ကို စောင့်ကြည့်နေသည် · · ·</span>
+  </div>
+
+  <!-- ===== SEARCH BAR ===== -->
+  <div class="search-bar-wrap">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="globalSearch" placeholder="Search archive... / မှတ်တမ်းများ ရှာပါ... (Ctrl+K)" autocomplete="off">
+      <button class="search-clear" id="searchClear" title="Clear">✕</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <button class="nav-btn active" data-panel="files">📁 မှတ်တမ်းများ</button>
+    <button class="nav-btn" data-panel="storylines">📖 ဇာတ်လမ်းများ</button>
+    <button class="nav-btn" data-panel="timeline">🕰️ Timeline</button>
+    <button class="nav-btn" data-panel="news">📰 သတင်းများ</button>
+    <button class="nav-btn" data-panel="photos">📸 ဓာတ်ပုံများ</button>
+    <button class="nav-btn" data-panel="vault">🔐 Vault</button>
+    <button class="nav-btn" data-panel="watch">👁️ စောင့်ကြည့်မှု</button>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="site-main">
+
+    <!-- FILES -->
+    <section class="panel active" id="files">
+      <h2>CLASSIFIED FILES<span class="my">လျှို့ဝှက်မှတ်တမ်းများ</span></h2>
+      <div class="marker-legend">
+        <span class="legend-title">CLASSIFICATION:</span>
+        <span class="legend-item"><span class="dot real"></span><span class="label">🟢 REAL — အမှန်တကယ်</span></span>
+        <span class="legend-item"><span class="dot folklore"></span><span class="label">🟡 FOLKLORE — ဒဏ္ဍာရီ</span></span>
+        <span class="legend-item"><span class="dot fiction"></span><span class="label">🔴 FICTION — စိတ်ကူးယဉ်</span></span>
+      </div>
+      <div class="file-grid" id="fileGrid"></div>
+    </section>
+
+    <!-- STORYLINES -->
+    <section class="panel" id="storylines">
+      <h2>ARCHIVED STORYLINES<span class="my">ဇာတ်လမ်းများ — ကဏ္ဍအလိုက်</span></h2>
+      <div class="marker-legend">
+        <span class="legend-title">REALITY MARKER:</span>
+        <span class="legend-item"><span class="dot real"></span><span class="label">🟢 REAL — အမှန်တကယ်</span></span>
+        <span class="legend-item"><span class="dot folklore"></span><span class="label">🟡 FOLKLORE — ဒဏ္ဍာရီ</span></span>
+        <span class="legend-item"><span class="dot fiction"></span><span class="label">🔴 FICTION — စိတ်ကူးယဉ်</span></span>
+      </div>
+      <div class="storyline-filter" id="storylineFilter"></div>
+      <div class="storyline-grid" id="storylineGrid"></div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="panel" id="timeline">
+      <h2>MASTER TIMELINE<span class="my">ဖြစ်ရပ်များ၏ အချိန်မျဉ်း (1943–2024)</span></h2>
+      <div class="timeline-controls">
+        <button id="tlAll" class="tl-btn active">ALL EVENTS</button>
+        <span class="tl-hint">← ဖြစ်ရပ်များကို နှိပ်ပြီး အသေးစိတ် ကြည့်ပါ</span>
+      </div>
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div>
+        <div class="timeline-events" id="timelineEvents"></div>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="panel" id="news">
+      <h2>EVENTS THAT NEVER HAPPENED<span class="my">မဖြစ်ပျက်ခဲ့ဖူးတဲ့ သမိုင်းဖြစ်ရပ်များ</span></h2>
+      <div id="newsList"></div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section class="panel" id="photos">
+      <h2>RECOVERED IMAGERY<span class="my">ပျောက်ဆုံးသွားတဲ့ ကမ္ဘာများမှ ဓာတ်ပုံများ</span></h2>
+      <div class="marker-legend">
+        <span class="legend-title">CLASSIFICATION:</span>
+        <span class="legend-item"><span class="dot real"></span><span class="label">🟢 REAL — အမှန်တကယ်</span></span>
+        <span class="legend-item"><span class="dot folklore"></span><span class="label">🟡 FOLKLORE — ဒဏ္ဍာရီ</span></span>
+        <span class="legend-item"><span class="dot fiction"></span><span class="label">🔴 FICTION — စိတ်ကူးယဉ်</span></span>
+      </div>
+      <div class="photo-grid" id="photoGrid"></div>
+    </section>
+
+    <!-- VAULT -->
+    <section class="panel" id="vault">
+      <h2>SECURE VAULT<span class="my">လျှို့ဝှက်စာမျက်နှာ — စကားဝှက် လိုအပ်သည်</span></h2>
+      <div class="vault">
+        <div class="lock-icon">🔐</div>
+        <div class="vault-label">ENTER ACCESS CODE</div>
+        <input type="password" id="vaultCode" placeholder="••••••••" autocomplete="off" aria-label="Access code">
+        <button id="unlockBtn">UNLOCK</button>
+        <div class="hint">အရိပ်အမြွက် — ဤဌာန၏ နံပါတ်ကို ရိုက်ထည့်ပါ (ဂဏန်းနှစ်လုံး)</div>
+        <div class="secret-content" id="secretContent"></div>
+      </div>
+    </section>
+
+    <!-- WATCH -->
+    <section class="panel" id="watch">
+      <h2>SURVEILLANCE NOTICE<span class="my">စောင့်ကြည့်မှု အသိပေးချက်</span></h2>
+      <div class="surveillance">
+        <div class="eye-anim">👁️</div>
+        <h3>YOU ARE BEING OBSERVED</h3>
+        <p>This terminal has been flagged. Your session is monitored by Bureau operatives across three adjacent timelines.</p>
+        <p class="my">ဤ terminal ကို အမှတ်အသားပြုထားပြီး ဖြစ်သည်။ သင့် session ကို ကပ်လျက် timeline သုံးခုမှ ဌာနမှ စောင့်ကြည့်နေသည်။</p>
+        <p>Do not attempt to close this window. The Bureau already knows you are here.</p>
+        <p class="my">ဤ window ကို ပိတ်ရန် မကြိုးစားပါနှင့်။ ဌာနသည် သင်ဒီရောက်နေသည်ကို သိပြီးဖြစ်သည်။</p>
+        <p class="monitor-id">NEXT REVIEW: 47:00:00 · · · OBSERVATION ID: 0x4A-7F-9E</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    BUREAU OF LOST TIMELINES · DEPT. 07 · ALL RECORDS FICTIONAL
+    <div class="my">ဤဝက်ဘ်ဆိုက်သည် စိတ်ကူးယဉ်မှတ်တမ်းများဖြင့် ဖန်တီးထားသည်</div>
+    <div class="footer-links">
+      <a href="leaderboard.html">📊 LEADERBOARD</a>
+      <a href="badges.html">🎖 BADGES</a>
+      <a href="missions.html">🎯 MISSIONS</a>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL ===== -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-inner">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <h3 id="modalTitle"></h3>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== AUDIO ===== -->
+  <audio id="ambience" loop preload="none">
+    <source src="audio/ambience.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ===== SCRIPTS (Loading Order is CRITICAL) ===== -->
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/nav-auth.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/documents-extra.js"></script>
+  <script src="js/photos-extra.js"></script>
+  <script src="js/photos-real.js"></script>
+
+  <script src="js/storylines.js"></script>
+  <script src="js/storylines-extra.js"></script>
+  <script src="js/storylines-extra2.js"></script>
+  <script src="js/myanmar-places.js"></script>
+  <script src="js/folklore-nats.js"></script>
+  <script src="js/folklore-weikza.js"></script>
+  <script src="js/folklore-natkadaw.js"></script>
+  <script src="js/folklore-extra.js"></script>
+
+  <script src="js/search.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/badges.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/glitch.js"></script>
+
+</body>
+</html>
