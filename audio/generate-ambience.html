@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ambience Generator | BLT</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #33ff66;
+      font-family: 'Courier New', monospace;
+      padding: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    h1 { color: #7dffa5; font-size: 18px; margin-bottom: 20px; }
+    button {
+      background: #33ff66;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-family: inherit;
+      font-weight: bold;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover { box-shadow: 0 0 20px #33ff66; }
+    button.off { background: #ff5555; }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .controls { margin: 20px 0; }
+    .status {
+      border: 1px solid #228844;
+      padding: 15px;
+      margin: 20px 0;
+      background: rgba(51,255,102,0.03);
+      font-size: 13px;
+    }
+    label { display: block; margin: 10px 0 5px; color: #7dffa5; font-size: 12px; }
+    input[type="range"] { width: 100%; }
+    .instructions {
+      border-left: 2px solid #33ff66;
+      padding: 10px 15px;
+      margin: 20px 0;
+      background: rgba(51,255,102,0.05);
+      font-size: 13px;
+      color: #55aa77;
+    }
+    code { color: #ffaa33; background: rgba(255,170,51,0.1); padding: 2px 6px; }
+  </style>
+</head>
+<body>
+  <h1>🔊 AMBIENCE GENERATOR — Bureau of Lost Timelines</h1>
+
+  <div class="instructions">
+    <strong>အသုံးပြုနည်း:</strong><br>
+    1. "▶ START" နှိပ်ပါ — hum စတင်မည်<br>
+    2. "⏺ RECORD 30s" နှိပ်ပါ — ၃၀ စက္ကန့် မှတ်တမ်းတင်မည်<br>
+    3. "⏬ DOWNLOAD" နှိပ်ပြီး <code>ambience.webm</code> သိမ်းပါ<br>
+    4. ထို file ကို <code>audio/</code> folder ထဲ ထည့်ပါ<br>
+    5. <code>index.html</code> ထဲ <code>ambience.mp3</code> → <code>ambience.webm</code> ပြောင်းပါ
+  </div>
+
+  <div class="controls">
+    <button id="startBtn">▶ START</button>
+    <button id="recBtn" disabled>⏺ RECORD 30s</button>
+    <button id="stopRecBtn" disabled>⏹ STOP</button>
+    <button id="downloadBtn" disabled>⏬ DOWNLOAD</button>
+  </div>
+
+  <div class="status" id="status">STATUS: idle</div>
+
+  <label>Hum Frequency (Hz): <span id="freqVal">58</span></label>
+  <input type="range" id="freq" min="30" max="120" value="58">
+
+  <label>Volume: <span id="volVal">0.02</span></label>
+  <input type="range" id="vol" min="0.001" max="0.1" step="0.001" value="0.02">
+
+  <label>Texture: <span id="texVal">0.5</span></label>
+  <input type="range" id="tex" min="0" max="1" step="0.05" value="0.5">
+
+  <script>
+    let ctx = null, oscillators = [], masterGain = null;
+    let mediaRecorder = null, recordedChunks = [], recordedBlob = null;
+    let isRunning = false;
+
+    const startBtn = document.getElementById('startBtn');
+    const recBtn = document.getElementById('recBtn');
+    const stopRecBtn = document.getElementById('stopRecBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const status = document.getElementById('status');
+    const freqInput = document.getElementById('freq');
+    const volInput = document.getElementById('vol');
+    const texInput = document.getElementById('tex');
+
+    freqInput.addEventListener('input', () => {
+      document.getElementById('freqVal').textContent = freqInput.value;
+      if (oscillators[0]) oscillators[0].frequency.value = parseFloat(freqInput.value);
+    });
+    volInput.addEventListener('input', () => {
+      document.getElementById('volVal').textContent = volInput.value;
+      if (masterGain) masterGain.gain.value = parseFloat(volInput.value);
+    });
+    texInput.addEventListener('input', () => {
+      document.getElementById('texVal').textContent = texInput.value;
+    });
+
+    function createNoiseBuffer(context) {
+      const bufferSize = 2 * context.sampleRate;
+      const buffer = context.createBuffer(1, bufferSize, context.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * 0.05;
+      }
+      return buffer;
+    }
+
+    function start() {
+      if (isRunning) return;
+      try {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        masterGain = ctx.createGain();
+        masterGain.gain.value = parseFloat(volInput.value);
+        masterGain.connect(ctx.destination);
+
+        const osc1 = ctx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.value = parseFloat(freqInput.value);
+        osc1.connect(masterGain);
+        osc1.start();
+        oscillators.push(osc1);
+
+        const osc2 = ctx.createOscillator();
+        osc2.type = 'triangle';
+        osc2.frequency.value = parseFloat(freqInput.value) * 2.01;
+        const g2 = ctx.createGain();
+        g2.gain.value = 0.4;
+        osc2.connect(g2).connect(masterGain);
+        osc2.start();
+        oscillators.push(osc2);
+
+        const osc3 = ctx.createOscillator();
+        osc3.type = 'sine';
+        osc3.frequency.value = parseFloat(freqInput.value) * 0.5;
+        const g3 = ctx.createGain();
+        g3.gain.value = 0.3;
+        osc3.connect(g3).connect(masterGain);
+        osc3.start();
+        oscillators.push(osc3);
+
+        const noise = ctx.createBufferSource();
+        noise.buffer = createNoiseBuffer(ctx);
+        noise.loop = true;
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.value = parseFloat(texInput.value) * 0.5;
+        noise.connect(noiseGain).connect(masterGain);
+        noise.start();
+        oscillators.push(noise);
+
+        isRunning = true;
+        startBtn.textContent = '⏹ STOP';
+        startBtn.classList.add('off');
+        recBtn.disabled = false;
+        status.textContent = 'STATUS: running · hum active';
+      } catch (e) {
+        status.textContent = 'ERROR: ' + e.message;
+      }
+    }
+
+    function stop() {
+      if (!isRunning) return;
+      oscillators.forEach(o => { try { o.stop(); } catch (e) {} });
+      oscillators = [];
+      if (ctx) { try { ctx.close(); } catch (e) {} ctx = null; }
+      isRunning = false;
+      startBtn.textContent = '▶ START';
+      startBtn.classList.remove('off');
+      recBtn.disabled = true;
+      status.textContent = 'STATUS: stopped';
+    }
+
+    startBtn.addEventListener('click', () => isRunning ? stop() : start());
+
+    recBtn.addEventListener('click', () => {
+      if (!isRunning || !ctx) return;
+      const dest = ctx.createMediaStreamDestination();
+      masterGain.connect(dest);
+      recordedChunks = [];
+      mediaRecorder = new MediaRecorder(dest.stream);
+      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        recordedBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+        downloadBtn.disabled = false;
+        status.textContent = 'STATUS: recorded ✓ · ' + (recordedBlob.size / 1024).toFixed(1) + ' KB — click DOWNLOAD';
+      };
+      mediaRecorder.start();
+      stopRecBtn.disabled = false;
+      recBtn.disabled = true;
+      status.textContent = 'STATUS: recording 30s...';
+      setTimeout(() => {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+          mediaRecorder.stop();
+          stopRecBtn.disabled = true;
+        }
+      }, 30000);
+    });
+
+    stopRecBtn.addEventListener('click', () => {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        stopRecBtn.disabled = true;
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!recordedBlob) return;
+      const url = URL.createObjectURL(recordedBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ambience.webm';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+  </script>
+</body>
+</html>
