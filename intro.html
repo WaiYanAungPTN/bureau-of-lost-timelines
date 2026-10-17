@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bureau of Lost Timelines</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/intro.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="intro-body">
+
+  <canvas id="introCanvas"></canvas>
+
+  <div class="intro-stage" id="introStage">
+
+    <div class="scene scene-1 active" data-scene="1">
+      <div class="s1-date">1947 · 1988 · 2019 · 2024</div>
+      <div class="s1-line">THE BUREAU HAS BEEN WATCHING</div>
+    </div>
+
+    <div class="scene scene-2" data-scene="2">
+      <div class="s2-clock">
+        <div class="clock-face">
+          <div class="clock-hand hour"></div>
+          <div class="clock-hand minute"></div>
+          <div class="clock-center"></div>
+        </div>
+      </div>
+      <div class="s2-text">SOMETHING WAS ERASED</div>
+    </div>
+
+    <div class="scene scene-3" data-scene="3">
+      <div class="s3-doc">
+        <div class="doc-line"></div>
+        <div class="doc-line redacted"></div>
+        <div class="doc-line"></div>
+        <div class="doc-line redacted short"></div>
+        <div class="doc-line"></div>
+        <div class="doc-line"></div>
+        <div class="doc-line redacted long"></div>
+      </div>
+      <div class="s3-text">SOMETHING WAS FORGOTTEN</div>
+    </div>
+
+    <div class="scene scene-4" data-scene="4">
+      <div class="s4-eye">
+        <div class="eye-outer"><div class="eye-inner"><div class="eye-pupil"></div></div></div>
+      </div>
+      <div class="s4-text">AND SOMETHING IS WATCHING BACK</div>
+    </div>
+
+    <div class="scene scene-5" data-scene="5">
+      <div class="s5-fracture">
+        <div class="fracture-line l1"></div>
+        <div class="fracture-line l2"></div>
+        <div class="fracture-line l3"></div>
+        <div class="fracture-line l4"></div>
+        <div class="fracture-line l5"></div>
+      </div>
+      <div class="s5-text">FORTY-ONE TIMELINES RECORDED</div>
+    </div>
+
+    <div class="scene scene-6" data-scene="6">
+      <div class="s6-pre">DEPARTMENT 07</div>
+      <h1 class="s6-title" id="titleGlitch">BUREAU<br>OF LOST<br>TIMELINES</h1>
+      <div class="s6-my">ပျောက်ဆုံးသွားတဲ့ အချိန်မျဉ်းကြောင်းများဆိုင်ရာ လျှို့ဝှက်ဌာန</div>
+      <div class="s6-line"></div>
+      <div class="s6-actions">
+        <button class="intro-btn primary" id="enterBtn">ENTER ARCHIVE →</button>
+        <button class="intro-btn" id="skipBtn">SKIP INTRO</button>
+      </div>
+      <div class="s6-warning">⚠ This archive contains classified material. You are being observed.</div>
+      <div class="s6-warning-my">⚠ ဤမှတ်တမ်းတိုက်တွင် လျှို့ဝှက်အချက်အလက်များ ပါဝင်သည်။ သင့်ကို စောင့်ကြည့်နေသည်။</div>
+    </div>
+
+    <div class="intro-progress" id="introProgress">
+      <div class="intro-progress-fill" id="introProgressFill"></div>
+    </div>
+
+    <button class="intro-skip" id="introSkip">SKIP →</button>
+
+    <div class="intro-scanlines"></div>
+    <div class="intro-vignette"></div>
+    <div class="intro-flicker"></div>
+  </div>
+
+  <audio id="introAudio" preload="auto">
+    <source src="audio/trailer-ambience.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="js/trailer-music.js"></script>
+  <script src="js/intro.js"></script>
+  <script>
+    (function () {
+      const btn = document.createElement('button');
+      btn.id = 'musicToggle';
+      btn.className = 'intro-skip';
+      btn.style.left = '20px';
+      btn.style.right = 'auto';
+      btn.textContent = '🎵 MUSIC OFF';
+      document.body.appendChild(btn);
+
+      let playing = false;
+      btn.addEventListener('click', () => {
+        if (playing) {
+          window.BLT_MUSIC && window.BLT_MUSIC.stop();
+          btn.textContent = '🎵 MUSIC OFF';
+        } else {
+          window.BLT_MUSIC && window.BLT_MUSIC.start();
+          btn.textContent = '🔊 MUSIC ON';
+        }
+        playing = !playing;
+      });
+
+      const autoStart = () => {
+        if (!playing) {
+          window.BLT_MUSIC && window.BLT_MUSIC.start();
+          btn.textContent = '🔊 MUSIC ON';
+          playing = true;
+        }
+        document.removeEventListener('click', autoStart);
+        document.removeEventListener('keydown', autoStart);
+      };
+      document.addEventListener('click', autoStart);
+      document.addEventListener('keydown', autoStart);
+    })();
+  </script>
+</body>
+</html>
