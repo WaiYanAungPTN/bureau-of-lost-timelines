@@ -1,0 +1,129 @@
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.badge-card {
+  border: 1px solid var(--fg-dim);
+  background: rgba(51, 255, 102, 0.03);
+  padding: 15px;
+  text-align: center;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.badge-card.earned {
+  border-color: var(--fg);
+  background: rgba(51, 255, 102, 0.1);
+  box-shadow: 0 0 20px rgba(51, 255, 102, 0.2);
+}
+
+.badge-card.locked {
+  opacity: 0.4;
+}
+
+.badge-card .badge-icon {
+  font-size: 40px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.badge-card.earned .badge-icon {
+  filter: drop-shadow(0 0 10px rgba(51, 255, 102, 0.8));
+}
+
+.badge-card .badge-title {
+  color: var(--fg-bright);
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.badge-card .badge-my {
+  font-family: var(--font-my);
+  font-size: 11px;
+  color: var(--fg);
+  margin-bottom: 8px;
+}
+
+.badge-card .badge-desc {
+  font-size: 10px;
+  color: var(--fg-mid);
+  line-height: 1.5;
+  min-height: 30px;
+}
+
+.badge-card .badge-desc-my {
+  font-family: var(--font-my);
+  font-size: 10px;
+  color: var(--fg-bright);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.badge-card .badge-status {
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+.badge-card.earned .badge-status {
+  color: var(--fg);
+}
+
+.badge-card.locked .badge-status {
+  color: var(--fg-dim);
+}
+
+.badge-card .badge-secret {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 10px;
+  color: var(--orange);
+}
+
+.badges-progress {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid var(--fg);
+  background: rgba(51, 255, 102, 0.05);
+}
+
+.badges-progress h3 {
+  color: var(--fg-bright);
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.badges-progress .bpb {
+  height: 8px;
+  background: var(--bg-dark);
+  border: 1px solid var(--fg-dim);
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.badges-progress .bpf {
+  height: 100%;
+  background: linear-gradient(90deg, var(--fg), var(--fg-bright));
+  box-shadow: 0 0 10px var(--fg);
+  transition: width 0.5s;
+}
+
+.badges-progress .bp-text {
+  font-size: 11px;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 500px) {
+  .badges-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  .badge-card .badge-icon {
+    font-size: 30px;
+  }
+}
