@@ -82,4 +82,101 @@
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
         size: Math.random() * 2 + 0.5,
-        alpha: Math.random() * 0.5
+        alpha: Math.random() * 0.5 + 0.2
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(51, 255, 102, ${p.alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  function initTitleGlitch() {
+    const title = document.getElementById('titleGlitch');
+    if (!title) return;
+    const original = title.innerHTML;
+    const chars = '▓▒░█@#$%&*';
+
+    setInterval(() => {
+      if (Math.random() > 0.85) {
+        const glitched = original.split('').map(c =>
+          Math.random() < 0.06 && c !== ' ' && c !== '<' && c !== '>' && c !== 'b' && c !== 'r'
+            ? chars[Math.floor(Math.random() * chars.length)]
+            : c
+        ).join('');
+        title.innerHTML = glitched;
+        setTimeout(() => { title.innerHTML = original; }, 100);
+      }
+    }, 2000);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initCanvas();
+    initTitleGlitch();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('skip') === '1') {
+      window.location.href = 'index.html';
+      return;
+    }
+
+    if (sessionStorage.getItem('blt_intro_seen') === '1') {
+      window.location.href = 'index.html';
+      return;
+    }
+
+    showScene(0);
+    startProgress();
+
+    const enterBtn = document.getElementById('enterBtn');
+    if (enterBtn) enterBtn.addEventListener('click', () => {
+      sessionStorage.setItem('blt_intro_seen', '1');
+      goToArchive();
+    });
+    const skipBtn = document.getElementById('skipBtn');
+    if (skipBtn) skipBtn.addEventListener('click', () => {
+      sessionStorage.setItem('blt_intro_seen', '1');
+      goToArchive();
+    });
+    const introSkip = document.getElementById('introSkip');
+    if (introSkip) introSkip.addEventListener('click', () => {
+      sessionStorage.setItem('blt_intro_seen', '1');
+      goToArchive();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Enter') {
+        sessionStorage.setItem('blt_intro_seen', '1');
+        goToArchive();
+      }
+      if (e.key === ' ') {
+        if (currentScene + 1 < SCENES.length) {
+          clearTimeout(sceneTimer);
+          showScene(currentScene + 1);
+        }
+      }
+    });
+
+    const scene6 = document.querySelector('.scene-6');
+    if (scene6) scene6.addEventListener('click', (e) => {
+      if (e.target.tagName === 'BUTTON') return;
+      sessionStorage.setItem('blt_intro_seen', '1');
+      goToArchive();
+    });
+  });
+})();
